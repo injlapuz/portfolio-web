@@ -148,8 +148,8 @@ export default function LeftPanel({ activeNav, onNavClick }: LeftPanelProps) {
                 ))}
             </div>
 
-            {/* Skills */}
-            <div className="px-5 py-4 overflow-y-auto">
+            {/* Skills - grows to fill space, scrollable */}
+            <div className="flex-1 min-h-0 px-5 py-4 overflow-y-auto">
                 <div className="flex items-center gap-2 mb-2.5">
                     <Code2 className="w-3.5 h-3.5 text-[#484f58]" />
                     <span className="text-[10px] text-[#484f58] uppercase tracking-widest">tech</span>
@@ -166,8 +166,8 @@ export default function LeftPanel({ activeNav, onNavClick }: LeftPanelProps) {
                 </div>
             </div>
 
-            {/* Social + CTA */}
-            <div className="px-4 py-3 border-t border-[#21262d] flex items-center gap-2">
+            {/* Social + CTA - pinned footer */}
+            <div className="px-4 py-3 border-t border-[#21262d] flex items-center gap-2 shrink-0">
                 <TooltipProvider delayDuration={100}>
                     {socialLinks.map(({ icon: Icon, label, href }) => (
                         <Tooltip key={label}>
