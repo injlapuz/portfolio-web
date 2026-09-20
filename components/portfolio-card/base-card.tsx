@@ -13,7 +13,7 @@ export default function PortfolioCard() {
     const [activeNav, setActiveNav] = useState("about");
 
     return (
-        <Card className="flex flex-col py-0 gap-0 relative w-full h-full max-h-[900px] max-w-7xl bg-[#0d1117] border border-[#21262d] shadow-2xl shadow-black/60 overflow-hidden">
+        <Card className="flex flex-col py-0 gap-0 relative w-full h-full max-h-[900px] max-w-7xl bg-[#0d1117] border border-[#21262d] shadow-2xl shadow-black/60 overflow-hidden animate-in slide-in-from-bottom zoom-in-95 duration-500 ease-out">
             {/* Top accent glow */}
             <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-sky-400/70 to-transparent" />
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-10 bg-sky-400/8 blur-2xl rounded-full" />
