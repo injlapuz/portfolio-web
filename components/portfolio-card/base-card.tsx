@@ -13,7 +13,7 @@ export default function PortfolioCard() {
     const [activeNav, setActiveNav] = useState("about");
 
     return (
-        <Card className="flex flex-col py-0 gap-0 relative w-full h-full max-h-[900px] max-w-7xl bg-[#0d1117] border border-[#21262d] shadow-2xl shadow-black/60 overflow-hidden">
+        <Card className="flex flex-col py-0 gap-0 relative w-full h-full max-h-[900px] max-w-7xl bg-[#0d1117] border border-[#21262d] shadow-2xl shadow-black/60 overflow-hidden animate-in fade-in zoom-in-75 duration-300 ease-out">
             {/* Top accent glow */}
             <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-sky-400/70 to-transparent" />
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-10 bg-sky-400/8 blur-2xl rounded-full" />
@@ -33,7 +33,15 @@ export default function PortfolioCard() {
                 <div className="flex flex-1 min-h-0">
                     <LeftPanel activeNav={activeNav} onNavClick={setActiveNav} />
                     <div className="flex-1 flex flex-col bg-[#0a0d12] overflow-hidden">
-                        <RightPanel activeNav={activeNav} />
+                        {/*
+                         * key={activeNav} forces RightPanel to remount whenever the
+                         * nav tab changes, resetting its internal `selectedElement`
+                         * state to null. Without this, a selected project (or the
+                         * experience dialog state) would leak across panels: e.g.
+                         * selecting a project then switching to "experience" left
+                         * `selectedElement` set, which blanked the experience panel.
+                         */}
+                        <RightPanel activeNav={activeNav} key={activeNav} />
                     </div>
                 </div>
 
