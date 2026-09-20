@@ -80,10 +80,10 @@ export default function LeftPanel({ activeNav, onNavClick }: LeftPanelProps) {
                 <span className="text-[#6e7681]">{"/**"}</span><br />
                 <span className="text-[#6e7681]">{" * @author"}</span>
                 <span className="text-sky-400"> Ian Nathaniel Lapuz</span><br />
+                <span className="text-[#6e7681]">{" * @role"}</span>
+                <span className="text-yellow-400"> Software Engineer</span><br />
                 <span className="text-[#6e7681]">{" * @focus"}</span>
-                <span className="text-yellow-400"> data | full stack</span><br />
-                <span className="text-[#6e7681]">{" * @status"}</span>
-                <span className="text-emerald-400"> seeking new roles</span><br />
+                <span className="text-emerald-400"> data | full stack</span><br />
                 <span className="text-[#6e7681]">{" */"}</span>
             </div>
 
