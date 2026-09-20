@@ -21,7 +21,7 @@ import {
     BookUser,
     ChevronRight,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { skills, stats, TYPING_TEXT } from "./data"
 
 const navItems = [
@@ -45,16 +45,26 @@ interface LeftPanelProps {
 export default function LeftPanel({ activeNav, onNavClick }: LeftPanelProps) {
     const [displayed, setDisplayed] = useState("");
     const [cursor, setCursor] = useState(true);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
-        let i = 0;
-        const interval = setInterval(() => {
-            if (i <= TYPING_TEXT.length) {
-                setDisplayed(TYPING_TEXT.slice(0, i));
-                i++;
-            } else clearInterval(interval);
-        }, 60);
-        return () => clearInterval(interval);
+        // Delay inner typing until the card's opening animation (duration-500) finishes
+        const timer = setTimeout(() => {
+            let i = 0;
+            intervalRef.current = setInterval(() => {
+                if (i <= TYPING_TEXT.length) {
+                    setDisplayed(TYPING_TEXT.slice(0, i));
+                    i++;
+                } else {
+                    if (intervalRef.current) clearInterval(intervalRef.current);
+                    intervalRef.current = null;
+                }
+            }, 60);
+        }, 600);
+        return () => {
+            clearTimeout(timer);
+            if (intervalRef.current) clearInterval(intervalRef.current);
+        };
     }, []);
 
     useEffect(() => {
