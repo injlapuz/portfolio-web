@@ -33,7 +33,15 @@ export default function PortfolioCard() {
                 <div className="flex flex-1 min-h-0">
                     <LeftPanel activeNav={activeNav} onNavClick={setActiveNav} />
                     <div className="flex-1 flex flex-col bg-[#0a0d12] overflow-hidden">
-                        <RightPanel activeNav={activeNav} />
+                        {/*
+                         * key={activeNav} forces RightPanel to remount whenever the
+                         * nav tab changes, resetting its internal `selectedElement`
+                         * state to null. Without this, a selected project (or the
+                         * experience dialog state) would leak across panels: e.g.
+                         * selecting a project then switching to "experience" left
+                         * `selectedElement` set, which blanked the experience panel.
+                         */}
+                        <RightPanel activeNav={activeNav} key={activeNav} />
                     </div>
                 </div>
 
