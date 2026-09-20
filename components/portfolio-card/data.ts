@@ -26,10 +26,10 @@ export interface StatItem {
 
 export interface ExpGroup {
     category: string;
-    items: { 
-        id: string; 
+    items: {
+        id: string;
         name: string;
-        text: string; 
+        text: string;
         note: string;
         duration: string;
     }[];
@@ -159,30 +159,37 @@ export const expDetails: ExpGroup[] = [
     {
         category: "Work Experience",
         items: [
-            {   
-                id: "exp-1", 
-                name: "Full Stack Developer", 
-                note: "Department of Science and Technology - PTRI",
-                duration: "May 2026 - Present",
+            {
+                id: "exp-1",
+                name: "Software Engineer",
+                note: "Quantum Technologies Inc.",
+                duration: "July 2026 - Present",
                 text: ""
             },
-            {   
-                id: "exp-2", 
-                name: "Part-time Data Automation Developer", 
+            {
+                id: "exp-2",
+                name: "Full Stack Developer",
+                note: "Department of Science and Technology - PTRI",
+                duration: "May 2026 - June 2026",
+                text: ""
+            },
+            {
+                id: "exp-3",
+                name: "Part-time Data Automation Developer",
                 note: "SJE Enterprises",
                 duration: "March 2025 - April 2026",
                 text: ""
             },
-            { 
-                id: "exp-3", 
-                name: "Freelance Full Stack Developer", 
+            {
+                id: "exp-4",
+                name: "Freelance Full Stack Developer",
                 note: "Apo Idon Beach Hotel Pagudpud",
                 duration: "June 2023 - December 2023",
                 text: ""
             },
-            { 
-                id: "exp-4", 
-                name: "Software Developer Intern", 
+            {
+                id: "exp-5",
+                name: "Software Developer Intern",
                 note: "Department of Science and Technology",
                 duration: "June 2023 - August 2023",
                 text: ""
@@ -192,25 +199,25 @@ export const expDetails: ExpGroup[] = [
     {
         category: "Education",
         items: [
-            { 
-                id: "edu-1", 
-                name: "University of the Philippines - Baguio", 
+            {
+                id: "edu-1",
+                name: "University of the Philippines - Baguio",
                 note: "Bachelor of Science",
-                duration: "2020 - 2024",
+                duration: "2021 - 2025",
                 text: ""
             },
-            { 
-                id: "edu-2", 
-                name: "Don Bosco Technical Institute - Tarlac", 
+            {
+                id: "edu-2",
+                name: "Don Bosco Technical Institute - Tarlac",
                 note: "High School",
-                duration: "2016 - 2020",
+                duration: "2015 - 2021",
                 text: ""
             },
-            { 
-                id: "edu-3", 
-                name: "College of the Holy Spirit - Tarlac", 
+            {
+                id: "edu-3",
+                name: "College of the Holy Spirit - Tarlac",
                 note: "Elementary",
-                duration: "2010 - 2016",
+                duration: "2009 - 2015",
                 text: ""
             },
         ],
@@ -218,16 +225,16 @@ export const expDetails: ExpGroup[] = [
     {
         category: "Certifications & Courses",
         items: [
-            {   
-                id: "cert-1", 
-                name: "Associate Data Engineer - DataCamp", 
+            {
+                id: "cert-1",
+                name: "Associate Data Engineer - DataCamp",
                 note: "August 2025",
                 duration: "In Progress",
                 text: ""
             },
-            { 
-                id: "cert-2", 
-                name: "Data Engineer - DataCamp", 
+            {
+                id: "cert-2",
+                name: "Data Engineer - DataCamp",
                 note: "In Progress",
                 duration: "In Progress",
                 text: ""

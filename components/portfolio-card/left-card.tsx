@@ -21,7 +21,7 @@ import {
     BookUser,
     ChevronRight,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { skills, stats, TYPING_TEXT } from "./data"
 
 const navItems = [
@@ -45,16 +45,26 @@ interface LeftPanelProps {
 export default function LeftPanel({ activeNav, onNavClick }: LeftPanelProps) {
     const [displayed, setDisplayed] = useState("");
     const [cursor, setCursor] = useState(true);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
-        let i = 0;
-        const interval = setInterval(() => {
-            if (i <= TYPING_TEXT.length) {
-                setDisplayed(TYPING_TEXT.slice(0, i));
-                i++;
-            } else clearInterval(interval);
-        }, 60);
-        return () => clearInterval(interval);
+        // Delay inner typing until the card's opening animation (duration-500) finishes
+        const timer = setTimeout(() => {
+            let i = 0;
+            intervalRef.current = setInterval(() => {
+                if (i <= TYPING_TEXT.length) {
+                    setDisplayed(TYPING_TEXT.slice(0, i));
+                    i++;
+                } else {
+                    if (intervalRef.current) clearInterval(intervalRef.current);
+                    intervalRef.current = null;
+                }
+            }, 60);
+        }, 600);
+        return () => {
+            clearTimeout(timer);
+            if (intervalRef.current) clearInterval(intervalRef.current);
+        };
     }, []);
 
     useEffect(() => {
@@ -63,17 +73,17 @@ export default function LeftPanel({ activeNav, onNavClick }: LeftPanelProps) {
     }, []);
 
     return (
-        <div className="w-72 min-h-screen shrink-0 border-r border-[#21262d] flex flex-col">
+        <div className="w-72 h-full shrink-0 border-r border-[#21262d] flex flex-col overflow-hidden">
 
             {/* JSDoc header */}
             <div className="px-5 pt-5 pb-3 text-xs leading-relaxed">
                 <span className="text-[#6e7681]">{"/**"}</span><br />
                 <span className="text-[#6e7681]">{" * @author"}</span>
                 <span className="text-sky-400"> Ian Nathaniel Lapuz</span><br />
+                <span className="text-[#6e7681]">{" * @role"}</span>
+                <span className="text-yellow-400"> Software Engineer</span><br />
                 <span className="text-[#6e7681]">{" * @focus"}</span>
-                <span className="text-yellow-400"> data | full stack</span><br />
-                <span className="text-[#6e7681]">{" * @status"}</span>
-                <span className="text-emerald-400"> seeking new roles</span><br />
+                <span className="text-emerald-400"> data | full stack</span><br />
                 <span className="text-[#6e7681]">{" */"}</span>
             </div>
 
@@ -148,8 +158,8 @@ export default function LeftPanel({ activeNav, onNavClick }: LeftPanelProps) {
                 ))}
             </div>
 
-            {/* Skills */}
-            <div className="mb-auto px-5 py-4">
+            {/* Skills - grows to fill space, scrollable */}
+            <div className="flex-1 min-h-0 px-5 py-4 overflow-y-auto">
                 <div className="flex items-center gap-2 mb-2.5">
                     <Code2 className="w-3.5 h-3.5 text-[#484f58]" />
                     <span className="text-[10px] text-[#484f58] uppercase tracking-widest">tech</span>
@@ -166,8 +176,8 @@ export default function LeftPanel({ activeNav, onNavClick }: LeftPanelProps) {
                 </div>
             </div>
 
-            {/* Social + CTA */}
-            <div className="px-4 py-3 border-t border-[#21262d] flex items-center gap-2">
+            {/* Social + CTA - pinned footer */}
+            <div className="px-4 py-3 border-t border-[#21262d] flex items-center gap-2 shrink-0">
                 <TooltipProvider delayDuration={100}>
                     {socialLinks.map(({ icon: Icon, label, href }) => (
                         <Tooltip key={label}>
